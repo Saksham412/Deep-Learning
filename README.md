@@ -66,7 +66,7 @@
 
 A perceptron is the simplest form of a neural network, serving as a basic building block for more complex models. It's often used for binary classification tasks.
 
-![Perceptron](perceptron_img.png)
+![Perceptron](perceptron.png)
 
 ### Comparison with Neuron
 
@@ -78,6 +78,6 @@ A perceptron is the simplest form of a neural network, serving as a basic buildi
 
 Weight values in a perceptron indicate the importance of features in the classification process.
 
-# Geometric Intuition
+### Geometric Intuition
 
 The perceptron classifies data into two classes by creating a decision boundary, which could be a line in 2D, a plane in 3D, or a hyperplane in higher dimensions. This decision boundary separates the classes based on the features of the input data.
