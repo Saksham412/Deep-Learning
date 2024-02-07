@@ -2,7 +2,7 @@
 
 A perceptron is the simplest form of a neural network, serving as a basic building block for more complex models. It's often used for binary classification tasks.
 
-![Perceptron](images/perceptron.png)
+![Perceptron](deep_learning/images/perceptron.png)
 
 ## Comparison with Neuron
 
