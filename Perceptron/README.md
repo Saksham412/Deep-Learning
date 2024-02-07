@@ -21,10 +21,11 @@ The perceptron classifies data into two classes by creating a decision boundary,
 # Training Perceptron 
 
 ## Perceptron Trick
-- perceptron trick -> we take a line and run a loop till convergence or for 1000 epoches, for each interval we select a point and check wheather  the point is at correct position and update the line accordingly
+- We take a line and run a loop till convergence or for 1000 epoches, for each interval we select a point and check wheather the point is at correct position and update the line accordingly
     - Now to update the line for a particular point we take some learning rate like 0.01 or .01 depending on the data and multiply the coordinates and subtract this from the coef of the line (learning rate is because of the high transformation in line otherwise)
 
-- **Algorithm** - ```
+- **Algorithm** - 
+```
 for i in range (epochs):
     // select a random student i 
     w_n = w_0+n*(y_i-y_i_^)*x_i
