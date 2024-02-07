@@ -72,7 +72,7 @@ Gradient descent is not directly applicable to the perceptron loss function due 
  
 # Important points to note about Perceptron
 
--It can be used fo different algorithms by using different activation functions and different loss functins.
+- It can be used fo different algorithms by using different activation functions and different loss functins.
     - Perceptron or Binary classifier -> Activation function = step and Loss function = Hinge loss
     - Logistic regression -> Activation function = sigmoid and Loss function = Binary cross entropy
     - Linear regression -> Activation function = Linear and Loss function = mean squared error
