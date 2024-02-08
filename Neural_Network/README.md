@@ -1,10 +1,6 @@
 # Multi Layer Perceptron (Neural Network)
 
 - Check out different architectures and play with neural networks on following link:
-<<<<<<< HEAD:Neural_Network/README.md
-=======
-
->>>>>>> origin/main:Multi_Layer_Perceptron/README.md
 [Tensorflow Playground](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.96653&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)
 
 ## Number of Parameters
@@ -26,7 +22,26 @@ W^(layer_no)_(input_neuron_no)(output_neuron_no)
 
 For the above network:
     W^2_14->Weight of the 1'st neuron of 2'nd layer connecting to 4'th neuron  of 3'rd layer.
-<<<<<<< HEAD:Neural_Network/README.md
     
-=======
->>>>>>> origin/main:Multi_Layer_Perceptron/README.md
+
+# Loss Functions in Neural Network
+Loss functions are used to evaluate how well the model performs its task. There are several loss functions available mainly:
+    1. Mean Squared Error (MSE): (y'-y)^2 
+        - Advantages: Easy to interpret, differentiable, 1 local minima
+        - Disadvantages: Error unit (squared) -> differentiable, Not robust to outliers that is it punishes the outliers.
+    2. Mean Absolute Error (MAE): |y'-y|
+        - Advantages: Easy to interpret, intuitive, Robust to outliers, unit same
+        - Disadvantages: Error unit (squared) -> not differentiable
+    3. Huber loss: (if |y-y'|<=delta then H=(y-y')^2/2 else H=delta*|y-y'|-(delta^2)/2)
+        - Works well when there more outliers in the data
+    4. Binary crossentropy loss or Log loss: -[(1-y')*log(1-y')+ (y' * log y') ]
+        - Used for binary classification problems
+        - Activation function at the output layer should be sigmoid.
+    5. Categorical Cross Entropy Loss: -(1/n)*sum(y'_i *log(y))
+        - Used for multi class classification problem
+        - Softmax activation function used at the output layer.
+        - Neurons at the output layer should be as many as classed.
+        - We need to onehotencode the data before applying this loss function else we can use Sparse Categorical cross emtropy.
+        - Sparse Categorical cross emtropy is prefereed as we dont need to onehotencode and it is faster for many class dataset.
+    
+**NOTE**: Cost function is addition of all rows loss in the dataset whereas loss function is for only one particular row.
