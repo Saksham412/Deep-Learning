@@ -22,6 +22,7 @@ W^(layer_no)_(input_neuron_no)(output_neuron_no)
 
 For the above network:
     W^2_14->Weight of the 1'st neuron of 2'nd layer connecting to 4'th neuron  of 3'rd layer.
+    b_21-> Bias of the 2'nd layer's 1'st neuron.
     
 
 # Loss Functions in Neural Network

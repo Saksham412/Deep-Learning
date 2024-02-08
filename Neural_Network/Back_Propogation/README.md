@@ -13,4 +13,4 @@ Back Propogation is the algorithm to train the neural network  by adjusting the 
         - B_new = B_old - lr * d(Loss)/dB
 4. Print the accuracy after every n number of iterations/epoches
 
-dependencies
+# Code back prop 
