@@ -157,3 +157,63 @@ Loss functions are used to evaluate how well the model performs its task. There 
     # Train the model with early stopping
     history = model.fit(x_train, y_train, epochs=100, validation_data=(x_val, y_val), callbacks=[early_stopping])
 
+## Normalization
+
+Normalization is a preprocessing technique used to scale and standardize input data, which helps improve the convergence and performance of neural networks.
+
+![Visualisation of normalisation](../images/normalisation.png)
+## Why Normalize Data?
+- **Improved Convergence**: Normalizing input features to a similar scale can help gradient descent algorithms converge faster, as it reduces the potential for large variations in the input space.
+- **Stable Training**: Normalization can prevent issues like vanishing or exploding gradients by ensuring that features are within a similar range.
+- **Enhanced Performance**: Normalization can lead to better generalization and performance of the model by making it less sensitive to the scale of input features.
+
+## Dropout layer
+
+Dropout is a regularization technique commonly used in neural networks to prevent overfitting by randomly dropping a proportion of neurons during training.
+
+![Dropout layer](../images/fdropout.png)
+
+### How Dropout Works
+- During each training iteration, a dropout layer randomly sets a fraction of input units to zero.
+- This effectively removes those units from the network for that iteration, preventing them from contributing to the forward or backward pass.
+- Dropout introduces noise into the network, which helps prevent co-adaptation of neurons and encourages the network to learn more robust features.
+
+### Benefits of Dropout
+- **Regularization**: Dropout helps prevent overfitting by reducing the network's reliance on specific neurons and encouraging the learning of more generalizable features.
+- **Improved Generalization**: By forcing the network to learn redundant representations, dropout typically leads to better generalization performance on unseen data.
+- **Ensemble Learning Effect**: Dropout can be seen as training multiple subnetworks within the full network, effectively creating an ensemble of models, which often leads to improved performance.
+
+### Usage in Neural Networks
+- Dropout layers are typically added after activation functions in fully connected or convolutional layers.
+- The dropout rate, which specifies the proportion of units to drop, is a hyperparameter that needs to be tuned during model training.
+- Dropout is generally applied during training and turned off during inference to allow the full network to make predictions without dropout noise.
+
+### Practical Tips to apply dropout
+
+- If Overfitting thn increase the p(dropout percent) if Underfitting then decrease it.
+- First try applying it at the last layer and then if needed do it for others.
+- For CNN's 40-50% gives better results and 20-30% for RNN's.
+- 10-50% ANN's
+- **Drawbacks**:
+    - Convergence is delayed.
+    - As loss function value changes gradient calculation is difficult.
+
+- [Research Paper on Dropout](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbFRGSXRBZjVMMm1uSDdQelZnWU1YQ3J6N2RMd3xBQ3Jtc0ttdF91cDFOMzRCVi1YalNPd1U3TjBlazRvWlhlRXQ1eFVqM2xqNk4yRTBYYTZZOF9TOS1HWndWTmN0Mmc2dzNnNGxTaTlVOG9HZmY1ckg5ZHJkZGlLalBTRUtOWkNqSkFXcHVVem00WU1zbjlEdTVOUQ&q=https%3A%2F%2Fjmlr.org%2Fpapers%2Fvolume15%2Fsrivastava14a%2Fsrivastava14a.pdf&v=tgIx04ML7-Y)
+
+### Example Usage in Keras
+```python
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+
+# Define the model with dropout
+model = Sequential([
+    Dense(64, activation='relu', input_shape=(10,)),
+    Dropout(0.5),  # Dropout with 50% dropout rate
+    Dense(64, activation='relu'),
+    Dropout(0.5),  # Dropout with 50% dropout rate
+    Dense(1, activation='sigmoid')
+])
+
+# Compile the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
