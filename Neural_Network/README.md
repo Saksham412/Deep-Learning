@@ -26,19 +26,25 @@ For the above network:
     
 
 # Loss Functions in Neural Network
+
 Loss functions are used to evaluate how well the model performs its task. There are several loss functions available mainly:
-    1. Mean Squared Error (MSE): (y'-y)^2 
+
+    1.Mean Squared Error (MSE): (y'-y)^2 
         - Advantages: Easy to interpret, differentiable, 1 local minima
         - Disadvantages: Error unit (squared) -> differentiable, Not robust to outliers that is it punishes the outliers.
-    2. Mean Absolute Error (MAE): |y'-y|
+
+    2.Mean Absolute Error (MAE): |y'-y|
         - Advantages: Easy to interpret, intuitive, Robust to outliers, unit same
         - Disadvantages: Error unit (squared) -> not differentiable
-    3. Huber loss: (if |y-y'|<=delta then H=(y-y')^2/2 else H=delta*|y-y'|-(delta^2)/2)
+
+    3.Huber loss: (if |y-y'|<=delta then H=(y-y')^2/2 else H=delta*|y-y'|-(delta^2)/2)
         - Works well when there more outliers in the data
-    4. Binary crossentropy loss or Log loss: -[(1-y')*log(1-y')+ (y' * log y') ]
+
+    4.Binary crossentropy loss or Log loss: -[(1-y')*log(1-y')+ (y' * log y') ]
         - Used for binary classification problems
         - Activation function at the output layer should be sigmoid.
-    5. Categorical Cross Entropy Loss: -(1/n)*sum(y'_i *log(y))
+
+    5.Categorical Cross Entropy Loss: -(1/n)*sum(y'_i *log(y))
         - Used for multi class classification problem
         - Softmax activation function used at the output layer.
         - Neurons at the output layer should be as many as classed.
