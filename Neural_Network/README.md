@@ -162,7 +162,7 @@ Loss functions are used to evaluate how well the model performs its task. There 
 Normalization is a preprocessing technique used to scale and standardize input data, which helps improve the convergence and performance of neural networks.
 
 ![Visualisation of normalisation](../images/normalisation.png)
-## Why Normalize Data?
+### Why Normalize Data?
 - **Improved Convergence**: Normalizing input features to a similar scale can help gradient descent algorithms converge faster, as it reduces the potential for large variations in the input space.
 - **Stable Training**: Normalization can prevent issues like vanishing or exploding gradients by ensuring that features are within a similar range.
 - **Enhanced Performance**: Normalization can lead to better generalization and performance of the model by making it less sensitive to the scale of input features.
@@ -216,4 +216,6 @@ model = Sequential([
 
 # Compile the model
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+```
 
+## Regularisation
