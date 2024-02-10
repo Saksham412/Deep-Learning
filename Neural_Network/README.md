@@ -313,51 +313,27 @@ Choosing the appropriate activation function depends on the specific characteris
 
 ##### Normal Distribution
 For a normal distribution, the weights are initialized according to Xavier initialization as:
-
-\[ W \sim N\left(0, \frac{2}{n_{in} + n_{out}}\right) \]
-
-Where:
-- \( W \) is the weight matrix.
-- \( N(0, \sigma^2) \) denotes the normal distribution with mean 0 and variance \( \sigma^2 \).
-- \( n_{in} \) is the number of neurons in the previous layer.
-- \( n_{out} \) is the number of neurons in the next layer.
-
+&radic;x.(1/fan_in)
+    where:
+        fan_in is input in a neuron.
 ##### Uniform Distribution
 For a uniform distribution, the weights are initialized according to Xavier initialization as:
-
-\[ W \sim U\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right) \]
-
-Where:
-- \( W \) is the weight matrix.
-- \( U(a, b) \) denotes the uniform distribution in the range \([a, b]\).
-- \( n_{in} \) is the number of neurons in the previous layer.
-- \( n_{out} \) is the number of neurons in the next layer.
+&radic;x.(6/(fan_in+fan_out))
+    where:
+        - fan_in is input in a neuron.
+        - fan_out is output in a neuron.
 
 #### He Initialization
 - Used mainly in **relu** activation functions.
 ##### Normal Distribution
 For a normal distribution, the weights are initialized according to He initialization as:
-
-\[ W \sim N\left(0, \sqrt{\frac{2}{n_{in}}}\right) \]
-
-Where:
-- \( W \) is the weight matrix.
-- \( N(0, \sigma^2) \) denotes the normal distribution with mean 0 and variance \( \sigma^2 \).
-- \( n_{in} \) is the number of neurons in the previous layer.
+&radic;x.(2/fan_in)
+    where:
+        - fan_in is input in a neuron.
 
 ##### Uniform Distribution
 For a uniform distribution, the weights are initialized according to He initialization as:
-
-\[ W \sim U\left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right) \]
-
-Where:
-- \( W \) is the weight matrix.
-- \( U(a, b) \) denotes the uniform distribution in the range \([a, b]\).
-- \( n_{in} \) is the number of neurons in the previous layer.
-
-- For normal distribution
-xavier-> formuale underroot(1/fan_in)
-He normal-> formuale underroot(2/fan_in)
-- For uniform distribution 
-xavier-> limit = underroot(6/(fan_in+fan_out))
-He normal-> limit = underroot(6/fan_in)
+&radic;x.(6/fan_in)
+    where:
+        - fan_in is input in a neuron.
+        - fan_out is output in a neuron.
