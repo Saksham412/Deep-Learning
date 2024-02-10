@@ -243,3 +243,121 @@ Regularization is a technique used to prevent overfitting in machine learning mo
 - Combination of L1 and L2 regularization.
 - Allows for the benefits of both L1 and L2 regularization.
 - Controls the balance between sparsity and coefficient shrinkage.
+
+## Activation Functions
+
+Certainly! Here's an overview of different activation functions commonly used in neural networks, along with their advantages and disadvantages:
+
+1. **Sigmoid Function**:
+   - **Advantages**:
+     - Produces outputs in the range (0, 1), making it suitable for binary classification tasks where the output needs to be interpreted as probabilities.
+     - Smooth gradient, facilitating stable training through backpropagation.
+   - **Disadvantages**:
+     - Suffers from the vanishing gradient problem, where gradients become extremely small, making training slower and more prone to convergence issues.
+     - Outputs are not zero-centered, leading to slower convergence in networks with many layers.
+     - Prone to saturation and gradients approaching zero for extreme inputs, causing the model to learn slowly.
+
+2. **ReLU (Rectified Linear Unit)**:
+   - **Advantages**:
+     - Fast and simple computation, as it involves only a thresholding operation.
+     - Overcomes the vanishing gradient problem, as it maintains a constant gradient for positive inputs.
+     - Sparsity in activations, promoting sparse representations in the network and reducing computational load.
+   - **Disadvantages**:
+     - Not zero-centered, leading to issues with gradient-based optimization methods in networks with many layers.
+     - Can suffer from the "dying ReLU" problem, where neurons become inactive and output zero for all inputs, effectively killing the gradient.
+
+3. **Leaky ReLU**:
+   - **Advantages**:
+     - Addresses the "dying ReLU" problem by allowing a small gradient for negative inputs, preventing neurons from becoming inactive.
+     - Helps alleviate the zero-centered activation issue.
+   - **Disadvantages**:
+     - Adds a hyperparameter to the model, requiring tuning.
+     - May not perform significantly better than standard ReLU in all cases.
+
+4. **Tanh Function**:
+   - **Advantages**:
+     - Produces outputs in the range (-1, 1), making it suitable for classification tasks where inputs have negative values.
+     - Zero-centered, aiding optimization in networks with many layers.
+   - **Disadvantages**:
+     - Prone to the vanishing gradient problem similar to the sigmoid function, albeit to a lesser extent.
+     - Computationally more expensive compared to ReLU and its variants.
+
+5. **Softmax Function**:
+   - **Advantages**:
+     - Used in the output layer for multi-class classification tasks, providing probabilities for each class.
+     - Ensures that the output probabilities sum up to 1, facilitating interpretation.
+   - **Disadvantages**:
+     - Sensitive to outliers, as it exponentiates the input values, potentially leading to numerical instability.
+     - Requires careful handling during implementation to prevent issues with large or very small inputs.
+
+Choosing the appropriate activation function depends on the specific characteristics of the problem at hand and the architecture of the neural network. Experimentation and empirical testing are often necessary to determine the most suitable activation function for a given task.
+
+### Different types of relu
+- Relu
+- Leaky relu
+- ELU (Exponential Linear Unit)
+- SELU (Scaled Exponential Linear Unit)
+
+## Weight initialization
+
+### Dont's
+
+1. Initialize weights as 0.
+2. Initialize weights as same constant number.
+3. Initialize weights as random weights. (too small or big)
+
+### Do's
+
+#### Xavier Initialization
+- Used mainly in **tanh and sigmoid** activation functions.
+
+##### Normal Distribution
+For a normal distribution, the weights are initialized according to Xavier initialization as:
+
+\[ W \sim N\left(0, \frac{2}{n_{in} + n_{out}}\right) \]
+
+Where:
+- \( W \) is the weight matrix.
+- \( N(0, \sigma^2) \) denotes the normal distribution with mean 0 and variance \( \sigma^2 \).
+- \( n_{in} \) is the number of neurons in the previous layer.
+- \( n_{out} \) is the number of neurons in the next layer.
+
+##### Uniform Distribution
+For a uniform distribution, the weights are initialized according to Xavier initialization as:
+
+\[ W \sim U\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right) \]
+
+Where:
+- \( W \) is the weight matrix.
+- \( U(a, b) \) denotes the uniform distribution in the range \([a, b]\).
+- \( n_{in} \) is the number of neurons in the previous layer.
+- \( n_{out} \) is the number of neurons in the next layer.
+
+#### He Initialization
+- Used mainly in **relu** activation functions.
+##### Normal Distribution
+For a normal distribution, the weights are initialized according to He initialization as:
+
+\[ W \sim N\left(0, \sqrt{\frac{2}{n_{in}}}\right) \]
+
+Where:
+- \( W \) is the weight matrix.
+- \( N(0, \sigma^2) \) denotes the normal distribution with mean 0 and variance \( \sigma^2 \).
+- \( n_{in} \) is the number of neurons in the previous layer.
+
+##### Uniform Distribution
+For a uniform distribution, the weights are initialized according to He initialization as:
+
+\[ W \sim U\left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right) \]
+
+Where:
+- \( W \) is the weight matrix.
+- \( U(a, b) \) denotes the uniform distribution in the range \([a, b]\).
+- \( n_{in} \) is the number of neurons in the previous layer.
+
+- For normal distribution
+xavier-> formuale underroot(1/fan_in)
+He normal-> formuale underroot(2/fan_in)
+- For uniform distribution 
+xavier-> limit = underroot(6/(fan_in+fan_out))
+He normal-> limit = underroot(6/fan_in)
