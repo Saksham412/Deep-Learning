@@ -219,3 +219,27 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 ```
 
 ## Regularisation
+
+Regularization is a technique used to prevent overfitting in machine learning models. Overfitting occurs when a model learns to fit the training data too closely, capturing noise and irrelevant patterns that do not generalize well to unseen data. Regularization methods impose constraints on the model to reduce its complexity and improve its ability to generalize. Regularization technique is any method which adds a penalty term to the loss function.
+
+### Types of Regularization
+
+1. L1 Regularization (Lasso): λ * ∑|w_j|
+- Penalizes the absolute magnitude of the coefficients.
+- Encourages sparsity by shrinking some coefficients to zero.
+- Useful for feature selection and creating sparse models.
+
+
+2. L2 Regularization (Ridge): λ * ∑w_j^2
+- Penalizes the squared magnitude of the coefficients.
+- Encourages small but non-zero coefficients.
+- Helps to reduce the impact of collinearity among features.
+
+    Where:
+    - λ is the regularization parameter.
+    - w_j is the j-th coefficient of the model.
+
+3. Elastic Net Regularization
+- Combination of L1 and L2 regularization.
+- Allows for the benefits of both L1 and L2 regularization.
+- Controls the balance between sparsity and coefficient shrinkage.
