@@ -313,12 +313,12 @@ Choosing the appropriate activation function depends on the specific characteris
 
 ##### Normal Distribution
 For a normal distribution, the weights are initialized according to Xavier initialization as:
-&radic;x.(1/fan_in)
+&radic;(1/fan_in)
     where:
         fan_in is input in a neuron.
 ##### Uniform Distribution
 For a uniform distribution, the weights are initialized according to Xavier initialization as:
-&radic;x.(6/(fan_in+fan_out))
+&radic;(6/(fan_in+fan_out))
     where:
         - fan_in is input in a neuron.
         - fan_out is output in a neuron.
@@ -327,13 +327,13 @@ For a uniform distribution, the weights are initialized according to Xavier init
 - Used mainly in **relu** activation functions.
 ##### Normal Distribution
 For a normal distribution, the weights are initialized according to He initialization as:
-&radic;x.(2/fan_in)
+&radic;(2/fan_in)
     where:
         - fan_in is input in a neuron.
 
 ##### Uniform Distribution
 For a uniform distribution, the weights are initialized according to He initialization as:
-&radic;x.(6/fan_in)
+&radic;(6/fan_in)
     where:
         - fan_in is input in a neuron.
         - fan_out is output in a neuron.
