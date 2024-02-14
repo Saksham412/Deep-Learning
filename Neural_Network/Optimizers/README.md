@@ -113,3 +113,48 @@ for each iteration t:
     lookahead_gradient = compute_gradient(data, parameters - beta * v)
     v = beta * v + alpha * lookahead_gradient
     parameters = parameters - v
+
+
+# AdaGrad
+
+## Overview
+AdaGrad (Adaptive Gradient Algorithm) is an optimization algorithm commonly used in training neural networks and other machine learning models. It adapts the learning rate for each parameter based on the historical gradients, allowing for larger updates for infrequent parameters and smaller updates for frequent parameters.
+
+## Algorithm
+AdaGrad maintains a per-parameter learning rate that is inversely proportional to the square root of the sum of squared gradients for that parameter up to the current iteration. The update rule for parameter θ is as follows:
+
+g_t = ∇θJ(θ)
+
+s_t = s_{t-1} + g_t^2
+
+θ = θ - (α / sqrt(s_t + ε)) * g_t
+
+Where:
+- g_t is the gradient of the objective function J(θ) with respect to the parameters θ at iteration t.
+- s_t is a diagonal matrix where each diagonal element is the sum of the squared gradients up to iteration t.
+- α is the initial learning rate.
+- ε is a small constant (usually on the order of 1e-8) added for numerical stability.
+
+AdaGrad adapts the learning rate for each parameter based on its historical gradients. Parameters with larger gradients will have smaller effective learning rates, while parameters with smaller gradients will have larger effective learning rates. This allows AdaGrad to automatically adjust the learning rate to the specific requirements of each parameter during training.
+
+## Usage
+1. Choose a suitable initial learning rate α.
+2. Initialize the sum of squared gradients s_0 to zero.
+3. Iterate through the training data in mini-batches.
+4. Compute the gradient of the objective function with respect to the parameters.
+5. Update the sum of squared gradients and model parameters using the update rule.
+6. Repeat steps 3-5 until convergence or a predefined number of iterations.
+
+## Benefits
+- **Adaptive learning rates**: AdaGrad adapts the learning rate for each parameter based on its historical gradients, allowing for larger updates for infrequent parameters and smaller updates for frequent parameters.
+- **Automatic scaling**: AdaGrad automatically scales the learning rates based on the gradients, eliminating the need for manual tuning of learning rates.
+- **Effective for sparse data**: AdaGrad performs well on sparse data where certain features have infrequent updates, as it adapts the learning rates based on the frequency of parameter updates.
+
+## Example
+```python
+# Pseudocode for AdaGrad
+s = 0
+for each iteration t:
+    gradient = compute_gradient(data, parameters)
+    s = s + gradient^2
+    parameters = parameters - (alpha / sqrt(s + epsilon)) * gradient
