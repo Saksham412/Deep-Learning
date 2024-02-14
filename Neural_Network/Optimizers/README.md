@@ -158,3 +158,48 @@ for each iteration t:
     gradient = compute_gradient(data, parameters)
     s = s + gradient^2
     parameters = parameters - (alpha / sqrt(s + epsilon)) * gradient
+
+# RMSprop
+
+## Overview
+RMSprop (Root Mean Square Propagation) is an optimization algorithm commonly used in training neural networks and other machine learning models. It is designed to address the diminishing learning rates and exploding gradients problems often encountered in training deep neural networks.
+
+## Algorithm
+RMSprop adapts the learning rate for each parameter based on the magnitude of recent gradients. It maintains a moving average of the squared gradients for each parameter and scales the learning rate by the square root of this moving average. The update rule for parameter θ is as follows:
+
+g_t = ∇θJ(θ)
+
+E[g^2]_t = β * E[g^2]_{t-1} + (1 - β) * g_t^2
+
+θ = θ - (α / sqrt(E[g^2]_t + ε)) * g_t
+
+Where:
+- g_t is the gradient of the objective function J(θ) with respect to the parameters θ at iteration t.
+- E[g^2]_t is the moving average of the squared gradients for each parameter up to iteration t.
+- β is the momentum decay parameter, typically a value close to 1 (e.g., 0.9).
+- α is the learning rate.
+- ε is a small constant (usually on the order of 1e-8) added for numerical stability.
+
+RMSprop scales the learning rate based on the magnitude of recent gradients, effectively reducing the learning rate for parameters with large gradients and increasing it for parameters with small gradients. This helps stabilize the training process and prevent exploding gradients, leading to faster convergence and improved performance.
+
+## Usage
+1. Choose suitable values for the momentum decay parameter β and the initial learning rate α.
+2. Initialize the moving average of squared gradients E[g^2]_0 to zero.
+3. Iterate through the training data in mini-batches.
+4. Compute the gradient of the objective function with respect to the parameters.
+5. Update the moving average of squared gradients and model parameters using the update rule.
+6. Repeat steps 3-5 until convergence or a predefined number of iterations.
+
+## Benefits
+- **Stabilized learning rates**: RMSprop adapts the learning rates based on the magnitude of recent gradients, effectively stabilizing the training process and preventing exploding gradients.
+- **Improved convergence**: By scaling the learning rates appropriately, RMSprop can achieve faster convergence and better performance compared to standard optimization algorithms.
+- **Applicability to various architectures**: RMSprop is widely used in training deep neural networks and can be applied to various architectures and types of data.
+
+## Example
+```python
+# Pseudocode for RMSprop
+E_g_squared = 0
+for each iteration t:
+    gradient = compute_gradient(data, parameters)
+    E_g_squared = beta * E_g_squared + (1 - beta) * gradient^2
+    parameters = parameters - (alpha / sqrt(E_g_squared + epsilon)) * gradient
