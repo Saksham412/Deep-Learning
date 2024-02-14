@@ -203,3 +203,55 @@ for each iteration t:
     gradient = compute_gradient(data, parameters)
     E_g_squared = beta * E_g_squared + (1 - beta) * gradient^2
     parameters = parameters - (alpha / sqrt(E_g_squared + epsilon)) * gradient
+
+
+# Adam (Adaptive Moment Estimation)
+
+## Overview
+Adam (Adaptive Moment Estimation) is an optimization algorithm commonly used in training neural networks and other machine learning models. It combines the benefits of both AdaGrad and RMSprop by maintaining separate adaptive learning rates for each parameter and incorporating momentum to speed up convergence.
+
+## Algorithm
+Adam computes individual adaptive learning rates for different parameters from estimates of first and second moments of the gradients. It maintains exponentially decaying moving averages of both the gradients (first moments) and the squared gradients (second moments). The update rule for parameter θ is as follows:
+
+m_t = β1 * m_{t-1} + (1 - β1) * g_t
+v_t = β2 * v_{t-1} + (1 - β2) * g_t^2
+
+m̂_t = m_t / (1 - β1^t)
+v̂_t = v_t / (1 - β2^t)
+
+θ = θ - (α / (sqrt(v̂_t) + ε)) * m̂_t
+
+Where:
+- g_t is the gradient of the objective function J(θ) with respect to the parameters θ at iteration t.
+- m_t and v_t are moving averages of the gradients (first moments) and squared gradients (second moments), respectively.
+- β1 and β2 are the decay rates for the first and second moments, typically set close to 1 (e.g., 0.9 and 0.999, respectively).
+- α is the learning rate.
+- ε is a small constant (usually on the order of 1e-8) added for numerical stability.
+
+Adam combines the benefits of AdaGrad's adaptive learning rates and RMSprop's stability, while also incorporating momentum to speed up convergence. It automatically adapts the learning rates for different parameters and efficiently handles sparse gradients.
+
+## Usage
+1. Choose suitable values for the decay rates β1 and β2, the initial learning rate α, and the small constant ε.
+2. Initialize the first and second moment estimates m_0 and v_0 to zero.
+3. Iterate through the training data in mini-batches.
+4. Compute the gradient of the objective function with respect to the parameters.
+5. Update the first and second moment estimates and model parameters using the update rule.
+6. Repeat steps 3-5 until convergence or a predefined number of iterations.
+
+## Benefits
+- **Adaptive learning rates**: Adam adapts the learning rates for different parameters based on estimates of first and second moments of the gradients, leading to faster convergence and improved performance.
+- **Efficient handling of sparse gradients**: Adam efficiently handles sparse gradients by automatically adjusting the learning rates based on the magnitude of the gradients.
+- **Combines momentum and adaptive learning rates**: Adam combines the benefits of momentum and adaptive learning rates, leading to faster convergence and better performance compared to other optimization algorithms.
+
+## Example
+```python
+# Pseudocode for Adam
+m = 0
+v = 0
+for each iteration t:
+    gradient = compute_gradient(data, parameters)
+    m = beta1 * m + (1 - beta1) * gradient
+    v = beta2 * v + (1 - beta2) * gradient^2
+    m_hat = m / (1 - beta1^t)
+    v_hat = v / (1 - beta2^t)
+    parameters = parameters - (alpha / (sqrt(v_hat) + epsilon)) * m_hat
